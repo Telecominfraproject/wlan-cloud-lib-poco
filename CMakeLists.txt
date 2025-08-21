@@ -2,6 +2,11 @@ cmake_minimum_required(VERSION 3.15.0)
 
 project(Poco)
 
+if(APPLE)
+    set(MYSQL_ROOT_DIR /usr/local/opt/mysql-client)
+    set(OPENSSL_ROOT_DIR /usr/local/opt/openssl)
+endif()
+
 file(STRINGS "${PROJECT_SOURCE_DIR}/libversion" SHARED_LIBRARY_VERSION)
 # Read the version information from the VERSION file
 file(STRINGS "${PROJECT_SOURCE_DIR}/VERSION" PACKAGE_VERSION)
@@ -57,6 +62,10 @@ include(GNUInstallDirs)
 
 # Include some common macros to simpilfy the Poco CMake files
 include(PocoMacros)
+
+if(BROKEN_MYSQL_RESET)
+	add_definitions(-DBROKEN_MYSQL_RESET=1)
+endif()
 
 option(BUILD_SHARED_LIBS "Build using shared libraries" ON)
 

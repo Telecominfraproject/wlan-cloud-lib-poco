@@ -103,6 +103,8 @@ public:
 		/// Returns the maximum payload size for receiveFrame().
 		///
 		/// The default is std::numeric_limits<int>::max().
+	
+	auto * streamSocketImpl() { return _pStreamSocketImpl; }
 
 protected:
 	enum

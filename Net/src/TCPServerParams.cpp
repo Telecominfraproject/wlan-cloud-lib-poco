@@ -60,5 +60,13 @@ void TCPServerParams::setThreadPriority(Poco::Thread::Priority prio)
 	_threadPriority = prio;
 }
 
+void TCPServerParams::setName(const std::string &name) {
+	_name = name;
+}
+
+std::string TCPServerParams::getName() const {
+	return _name;
+}
+
 
 } } // namespace Poco::Net

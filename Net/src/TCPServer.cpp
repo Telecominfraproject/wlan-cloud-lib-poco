@@ -125,6 +125,19 @@ void TCPServer::stop()
 
 void TCPServer::run()
 {
+	
+    if(!_pDispatcher->params().getName().empty()) {
+        Poco::Thread::current()->setName(_pDispatcher->params().getName());
+#ifdef __linux__
+		Poco::Thread::current()->setName(_pDispatcher->params().getName());
+		pthread_setname_np(pthread_self(), _pDispatcher->params().getName().c_str());
+#endif
+#ifdef __APPLE__
+		Poco::Thread::current()->setName(_pDispatcher->params().getName());
+		pthread_setname_np(_pDispatcher->params().getName().c_str());
+#endif
+	}
+
 	while (!_stopped)
 	{
 		Poco::Timespan timeout(250000);
