@@ -91,6 +91,13 @@ public:
 	Poco::Thread::Priority getThreadPriority() const;
 		/// Returns the priority of TCP server threads
 		/// created by TCPServer.
+	
+	void setName(const std::string &name);
+        /// Set the name of the underlying thread
+        //  created vy TCPserver
+
+    std::string getName() const;
+        /// Get the name of the underlying thread
 
 protected:
 	virtual ~TCPServerParams();
@@ -101,6 +108,7 @@ private:
 	int _maxThreads;
 	int _maxQueued;
 	Poco::Thread::Priority _threadPriority;
+	std::string _name;
 };
 
 
